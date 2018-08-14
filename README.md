@@ -3,7 +3,7 @@
 
 ### Authors
 >Raghav Khanna  
->Lukas Schmid
+>Lukas Schmid  
 Autonomous Systems Lab  
 ETH Zurich
 
