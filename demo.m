@@ -1,7 +1,7 @@
 % Sample script demonstrating (and) testing crop_phenotyping functionality
 
 %% Calibrate cameras
-realsenseParams = calibratecameraarray(2, 70);
+realsenseParams = calibratecameraarray(3, 50);
 
 %% Create 3D point clouds
 pointcloudArray = stereoreconstruction(realsenseParams{1});
