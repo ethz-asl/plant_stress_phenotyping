@@ -6,7 +6,8 @@ function [calibrationParameters] = calibratecameraarray(nCams, checkerboardSquar
 %    checkerboardSquareSizeMM) returns a cell array of stereoParam objects
 %    where the ith cell contains intrinsic and extrinsic parameters for the
 %    1st and (i+1)th camera pair.
-
+    
+    currentFolder = pwd;
     imageFolderArray = {};  % rown vectors of objects for each camera
     imageLocationArray = {};
     imagePointsArray = {};
@@ -14,7 +15,11 @@ function [calibrationParameters] = calibratecameraarray(nCams, checkerboardSquar
     imagesUsedArray = {};
     calibrationParameters = {};
     for iCam = 1: nCams
-        imageFolderArray{iCam} = uigetdir(strcat('Folder containing images for Cam ', num2str(iCam)));
+        if iCam==1
+            imageFolderArray{iCam} = uigetdir(currentFolder, strcat('Folder containing images for Cam ', num2str(iCam)));
+        else
+            imageFolderArray{iCam} = uigetdir(imageFolderArray{iCam-1}, strcat('Folder containing images for Cam ', num2str(iCam)));
+        end
         images = imageSet(imageFolderArray{iCam});
         imageLocationArray{iCam} = images.ImageLocation; % get paths of images in folder
         [imagePointsArray{iCam}, boardSizeArray{iCam}, imagesUsedArray{iCam}] = detectCheckerboardPoints(imageLocationArray{iCam});
