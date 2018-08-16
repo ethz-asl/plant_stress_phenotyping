@@ -16,8 +16,8 @@ function [pointcloudArray] = stereoreconstruction(stereoParams, folderpath1, fol
     pointcloudArray = {};
     
     for iImg = 1:length(imds1.Files)
-        frameLeft = rgb2gray(readimage(imds1, iImg));
-        frameRight = rgb2gray(readimage(imds2, iImg));
+        frameLeft = readimage(imds1, iImg);
+        frameRight = readimage(imds2, iImg);
         [frameLeftRect, frameRightRect] = ...
             rectifyStereoImages(frameLeft, frameRight, stereoParams);
         
