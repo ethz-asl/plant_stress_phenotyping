@@ -37,12 +37,11 @@ colorPointcloudArray = colorpointcloud(realsenseParams{2});
 % Visualise a pointcloud
 displayboxpointcloud(colorPointcloudArray{1});
 
-% Estimate Canopy Cover from RGB images
-canopyCoverArray = estimatecanopycover();
 
-% Estimate plant height from color pointclouds
-plantHeightArray = estimateplantheight(colorPointcloudArray)
-```
+### Dependencies
+Some functionality depends on the following third party software
+
+- [caltag](https://github.com/raghavkhanna/caltag)
 
 ### Functions
 
