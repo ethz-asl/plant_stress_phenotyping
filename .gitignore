@@ -106,3 +106,6 @@ ENV/
 # Data files and directories
 results/pointclouds
 results/images.mat
+
+# Third party code
+thirdparty/
