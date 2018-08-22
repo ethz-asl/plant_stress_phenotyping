@@ -102,3 +102,7 @@ ENV/
 
 # MATLAB
 *.m~
+
+# Data files and directories
+results/pointclouds
+results/images.mat
