@@ -18,15 +18,15 @@ grayMin = 100;          % Minimum Color Value for Thresholding
 grayMax = 200;          % Maximum Color Value for Thresholding
 N_rays = 300;           % Number of points to find box edge
 ray_step = 2;           % Stepwidth to detect box edge
-fitMethod = 1;          % 1 - most prominent edges fit (works quite robust 
+fitMethod = 2;          % 1 - most prominent edges fit (works quite robust 
                         % until ~50% the box boundaries are covered up), 
                         % 2 - maximum size rectangle (gives a shot at  
                         % barely visible boxes)
 
 % Manual box detection
-manualDetection = false;    % Set to true to sweep entire folder, AFTERWARDS 
+manualDetection = true;    % Set to true to sweep entire folder, AFTERWARDS 
                             % change to false for manual adjustment of certain boxes
-targetBox = [18];     % Boxnumber(s), which is/are to be manually modified.
+targetBox = [4,6,8,9,23,24,26,29];     % Boxnumber(s), which is/are to be manually modified.
 plotThreshold = false;      % Show thresholded images for every step in new figure (not recommended).
 
 %% Code
