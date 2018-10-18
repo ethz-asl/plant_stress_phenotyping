@@ -48,20 +48,3 @@ Folder `data_evaluation`  contains routines to process raw images and create spa
 |`MeasurementPointCloud.m`|*class*|Spatio-spectral point cloud data structure. Class member functions may be used to construct point cloud objects, analyse and visualize its properties.|
 |`script_detect_box_rgb.m`|*script*|Semi automated workflow to detect box extents from rgb images. The output box parameters may be used as input for `cropboxfromimage.m`. Our baseline box detections are available for the entire dataset (16 dates x 31 boxes in the `boxDetections.mat` file which can be found in the `results` folder.)|
 |`script_create_measurementpointcloud.m`|*script*|Demo script to fully build and populate **MeasurementPointCloud** objects from raw images.|
-
-### Example (run *demo.m*)
-For Realsense ZR300 stereo reconstruction and color reprojection
-```
-% Calibrate cameras
-realsenseParams = calibratecameraarray(3, 50);
-
-% The following are still WIP
-
-% Create 3D point clouds
-pointcloudArray = stereoreconstruction(realsenseParams{1});
-
-% Color point clouds using RGB images
-colorPointcloudArray = colorpointcloud(realsenseParams{2});
-
-% Visualise a pointcloud
-displayboxpointcloud(colorPointcloudArray{1});
