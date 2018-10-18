@@ -7,7 +7,7 @@
 % Should take about 30 secs to 1 min per dataset on a decent (i7) CPU.
 
 %% Parameters
-dataPath = '/media/flourish/raghavshdd3/khanna2018spatiotemporal/dataset/greenhouse_experiment/Data/dataset-release/images/20180329'; %/20180212;   
+dataPath = uigetdir(pwd, 'Select the measurement-date-folder'); %/20180212;   
 singleDataSet = true;                  % if false evaluates data for all subfolders of 'dataPath', else set 'dataPath' to the ***_greenhouse_measurments folder
 useBoxMask = true;                      % Returns 3d Points of box or of crops only (set to true for evaluation)
 visualizePointcloud = true;            % display masked pointcloud at the end
