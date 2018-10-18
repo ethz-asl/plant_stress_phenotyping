@@ -28,7 +28,7 @@ Some functionality depends on the following third party software
 ### Code Index
 
 #### Camera Calibration, 3D reconstruction and Multispectral Reprojection
-Folder `3dprocessing` contains utility functions for intrinsic and extrinsic camera calibration, stereo reconstruction and reprojection used for creating the spatio-spectral point clouds.
+Folder `3dprocessing` contains utility functions for intrinsic and extrinsic camera calibration, stereo reconstruction and reprojection used for creating the spatio-spectral point clouds.  
 | Filename | Type | Description |
 |---|---|---|
 |`calibratecameraarray.m`|*function*|Calibrate a set of N cameras given synchronised images of a checkerboard in different positions. Accepts RGB or grayscale images which may be taken from cameras sensitive to different wavelength bands as long as the checkerboard corners are visible in the images. Sample Usage for calibrating 3 cameras imaging a checkerboard with a square size of 50mm: `calibParams = calibratecameraarray(3, 50);`|
