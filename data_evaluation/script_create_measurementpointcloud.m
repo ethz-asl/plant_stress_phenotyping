@@ -1,5 +1,5 @@
 %% Create MeasurementPointcloud
-% Script should be run from its own folder
+% To be run from plant_stress_phenotyping root folder
 % Creates a 'MeasuremenPointcloud' object and specifies the fields
 % Location, IRIntensity, IRReflectanceFactor, RGBPosition, Color, 
 % RGBReflectanceFactor, MSIntensity, MSReflectanceFactor, MSWaveLengths, 
@@ -14,8 +14,8 @@ visualizePointcloud = true;            % display masked pointcloud at the end
 visualizationType = 'color';             % Set string what to visualize (color, ir, ndvi, label, MS*)
 
 recalibrateXimeaExtrinsics = true;      % Set to true to recalibrate the ximea extrinsics for datasets 3-16 using caltag.
-caltagPath = '../thirdparty/caltag';  % Path to caltag repository
-caltagData = '../results/calibration/2x2x2.5in.mat';   % Path, including filename and file extension to caltag calibration file.
+caltagPath = fullfile('thirdparty','caltag');  % Path to caltag repository
+caltagData = fullfile('results','calibration','2x2x2.5in.mat');   % Path, including filename and file extension to caltag calibration file.
 recalibrationBand = 22;                 % Multispectral band to use for recalibration image.
 
 seg_methods = {'EGI', 'MSDiff23_5'};        % Methods for crop segmentation by thresholding.
@@ -24,7 +24,7 @@ seg_upper = [Inf, Inf];                  % Upper bound for segmentation methods.
 
 saveResults = true;                    % True: stores 1 result per dataset, variable name will be the same as the saved file name.
 saveName = 'point_cloud_';                   % Results are stored as "saveName<dataset number>.mat'
-saveDir = '../results/pointclouds';        % Directory where to store the results
+saveDir = fullfile('results','pointclouds');        % Directory where to store the results
 
 % Results(dont change anything here)
 Results = cell(30,1);                   % Contains a MeasurementPointcloud for every box
@@ -32,11 +32,11 @@ ResultsFull = {};                       % Stores results for all datasets, Resul
 
 %% Load required Parameters and include utility paths
 % Change paths here if necessary
-load(fullfile('..', 'results','calibration', 'stereoParams.mat')); % Stereoclaibration
-load(fullfile('..', 'results', 'boxDetections.mat'));        % Detected boxes in rgb image
-load(fullfile('..', 'results', 'soilLevels.mat'));    % Z coordinate of soil (highest Density Estimate from dataset 3)
-addpath(fullfile('..', '3dprocessing'));                           % Include path with utility functions for calibration and 3D processing
-addpath(fullfile('..', 'spectral_image'));                           % Include path to build multispectral image datacube
+load(fullfile('results','calibration', 'stereoParams.mat')); % Stereoclaibration
+load(fullfile('results', 'boxDetections.mat'));        % Detected boxes in rgb image
+load(fullfile( 'results', 'soilLevels.mat'));    % Z coordinate of soil (highest Density Estimate from dataset 3)
+addpath(fullfile('3dprocessing'));                           % Include path with utility functions for calibration and 3D processing
+addpath(fullfile('spectral_image'));                           % Include path to build multispectral image datacube
 if recalibrateXimeaExtrinsics
    addpath(caltagPath);                                      % Include caltag recalibration repo 
 end

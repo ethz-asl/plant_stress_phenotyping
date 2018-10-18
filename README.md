@@ -25,8 +25,10 @@ Some functionality depends on the following third party software
 
 - [caltag](https://github.com/raghavkhanna/caltag)
 
-### Code Index
+### Usage
+- Scripts are configured to be run from the root `plant_stress_phenotyping` folder by default.
 
+### Code Index
 #### Camera Calibration, 3D reconstruction and Multispectral Reprojection
 Folder `3dprocessing` contains utility functions for intrinsic and extrinsic camera calibration, stereo reconstruction and reprojection used for creating the spatio-spectral point clouds.
 
@@ -49,5 +51,18 @@ Folder `data_evaluation`  contains routines to process raw images and create spa
 |`MeasurementPointCloud.m`|*class*|Spatio-spectral point cloud data structure. Class member functions may be used to construct point cloud objects, analyse and visualize its properties.|
 |`script_detect_box_rgb.m`|*script*|Semi automated workflow to detect box extents from rgb images. The output box parameters may be used as input for `cropboxfromimage.m`. Our baseline box detections are available for the entire dataset (16 dates x 31 boxes in the `boxDetections.mat` file which can be found in the `results` folder.)|
 |`script_create_measurementpointcloud.m`|*script*|Demo script to fully build and populate **MeasurementPointCloud** objects from raw images.|
+
+#### Indicator Analysis
+Folder `indicator_analysis` contains routines to extract, visualize, analyse and compare phenotypic indicators from the **MeasurementPointCoud** objects.
+
+| Filename | Type | Description |
+|---|---|---|
+|`plotindicators.m`|*function*|Plot indicators for a set of boxes over time|
+|`IndicatorData.m`|*class*|Class containing indicators and associated labels about the boxes for standardising downstream processing|
+|`script_create_indicators.m`|*script*|Load **MeasurementPointClouds** and process them into a set of indicators, stored as **IndicatorData**|
+|`script_visualize_Indicators.m`|*script* |Contains presets and standard settings to visualize data slices of interest.|
+|`script_anova.m`|*script*|Perform Analysis of Variance (ANOVA) and multiple comparison tests to detect phenotypic indicators of significance w.r.t e.g yield.|
+
+#### Models
 
 
