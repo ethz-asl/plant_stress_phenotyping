@@ -4,6 +4,7 @@
 % Location, IRIntensity, IRReflectanceFactor, RGBPosition, Color, 
 % RGBReflectanceFactor, MSIntensity, MSReflectanceFactor, MSWaveLengths, 
 % NDVI and Label for every box in a single or all datasets.
+% Should take about 30 secs to 1 min per dataset on a decent (i7) CPU.
 
 %% Parameters
 dataPath = '/media/flourish/raghavshdd3/khanna2018spatiotemporal/dataset/greenhouse_experiment/Data/dataset-release/images/20180329'; %/20180212;   
@@ -34,7 +35,8 @@ ResultsFull = {};                       % Stores results for all datasets, Resul
 load(fullfile('..', 'results','calibration', 'stereoParams.mat')); % Stereoclaibration
 load(fullfile('..', 'results', 'boxDetections.mat'));        % Detected boxes in rgb image
 load(fullfile('..', 'results', 'soilLevels.mat'));    % Z coordinate of soil (highest Density Estimate from dataset 3)
-addpath(fullfile('..', 'core'));                           % Include path to build multispectral image datacube
+addpath(fullfile('..', '3dprocessing'));                           % Include path with utility functions for calibration and 3D processing
+addpath(fullfile('..', 'spectral_image'));                           % Include path to build multispectral image datacube
 if recalibrateXimeaExtrinsics
    addpath(caltagPath);                                      % Include caltag recalibration repo 
 end
@@ -137,7 +139,7 @@ for ds = 1:length(subDirs)
         % Get multispectral datacube
         specImg = SpectralImage(imread(imageSetMS{i}));
         MSdataCubes{i} = specImg.dataCubeOriginalFormat;        
-        if(dataSetNumber <2)
+        if(dataSetNumber <2)    % First dataset has 8 bit ximea images, the others have 10 bit raw (read by matlab as 16 bit), hence this normalisation is required
             bitNormalization = 2^8-1;
         else
             bitNormalization = 2^6*(2^10-1);
@@ -187,6 +189,7 @@ for ds = 1:length(subDirs)
     if (visualizePointcloud)
         fprintf(1,'-Plot');
         for i=1:30
+            figure;
             Results{i}.displaypointcloud(visualizationType);
         end
     end
