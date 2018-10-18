@@ -63,7 +63,7 @@ if(displayIndicatorNames)
     end
 end
 
-%% remove first and last dates from the plots
+%% remove first and last dates from the plots (for better visualization)
 X = X(:,3:15,:);
 daysAfterSowing = daysAfterSowing(3:15);
 %% display some preset

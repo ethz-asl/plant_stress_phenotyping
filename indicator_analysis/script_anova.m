@@ -2,8 +2,8 @@
 % Perform analysis of variance (ANOVA) for different indicators or yields.
 % Identify significant differences by using multiple comparison analysis.
 %% Parameters
-dataPath = fullfile('data','IndicatorsFull.mat'); % Path and name of IndicatorData to load.
-processYield = true;    % Evaluate yield instead of indicaotrs. Yield IDs 
+dataPath = fullfile('results','indicatorsAllMeans.mat'); % Path and name of IndicatorData to load.
+processYield = false;    % Evaluate yield instead of indicators. Yield IDs 
                         % are 1-Leaves, 2-Dry Leaves, 3-Beets, 4-Dry Beets.
 ID = 1;                 % ID of indicator/yield data to evaluate.
 preprocessing = 'N';    % Apply preprocessing (use N for normalizer, S for 
@@ -32,7 +32,7 @@ if ~rankAllIndicators
     close all;
     % Process yield or indicator
     if processYield     
-         load(fullfile('data','yield.mat'));
+         load(fullfile('results','yield.mat'));
          data = reshape(yield(:, ID), 1, []);
          for i=1:3
              temp = groups{i};

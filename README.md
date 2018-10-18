@@ -57,11 +57,11 @@ Folder `indicator_analysis` contains routines to extract, visualize, analyse and
 
 | Filename | Type | Description |
 |---|---|---|
-|`plotindicators.m`|*function*|Plot indicators for a set of boxes over time|
+|`plotindicators.m`|*function*|Plot indicators for a set of boxes over time. See `script_visualize_Indicators.m` for sample usage|
 |`IndicatorData.m`|*class*|Class containing indicators and associated labels about the boxes for standardising downstream processing|
 |`script_create_indicators.m`|*script*|Load **MeasurementPointClouds** and process them into a set of indicators, stored as **IndicatorData**|
-|`script_visualize_Indicators.m`|*script* |Contains presets and standard settings to visualize data slices of interest.|
-|`script_anova.m`|*script*|Perform Analysis of Variance (ANOVA) and multiple comparison tests to detect phenotypic indicators of significance w.r.t e.g yield.|
+|`script_visualize_Indicators.m`|*script* |Contains presets and standard settings to visualize data slices of interest.![Height development over time for a subset of boxes](results/height-plot-water-N-stress.jpg)|
+|`script_anova.m`|*script*|Perform Analysis of Variance (ANOVA) and multiple comparison tests to detect phenotypic indicators of significance w.r.t e.g yield. ![Significance of Canopy Cover on Drought stress](results/anova-canopycover-water.jpg)|
 
 #### Models
 
