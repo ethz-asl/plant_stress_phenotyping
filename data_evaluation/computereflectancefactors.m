@@ -11,12 +11,13 @@ function [reflectanceFactors] = computereflectancefactors(imageSetRGB, imageSetI
 %                           multispectral images.
 %
 %   Averages the recorded pixelvalue for a fixed region of the reflectance
-%   plate with known refletance of 0.6. If the plate is cluttered with
+%   plate with known refletance of panelReflectance. If the plate is cluttered with
 %   plants (detected in RGB image) the reflectance is estimated from its 
 %   neighboring images.
 
 reflectanceFactors = zeros(31,27);
 occlusions = false(31,1);
+panelReflectance = 0.6
 
 % Compute RGB and occlusion
 for i=1:31
@@ -25,7 +26,7 @@ for i=1:31
     
     % Detect occlusion, otherwise write factor
     if (min(imgRGB(:)) > 100)
-        reflectanceFactors(i,1) = 0.6 / mean(imgRGB(:));
+        reflectanceFactors(i,1) = panelReflectance / mean(imgRGB(:));
     else
         occlusions(i) = true;
     end
@@ -37,7 +38,7 @@ if(nargin >= 2)
         % Get batch of reflectorplate (fixed position within image)
         if (~occlusions(i))
             imgIR = imcrop(imread(imageSetIR{i}), [1 195 60 54]);
-            reflectanceFactors(i,2) = 0.6 / mean(imgIR(:));
+            reflectanceFactors(i,2) = panelReflectance / mean(imgIR(:));
         end
     end
 end
@@ -50,7 +51,7 @@ if(nargin == 3)
             for j = 1:25    % Wavelengths
                 % Get batch of reflectorplate (fixed position within image)
                 imgMS = imcrop(cubeMS(:,:,j), [375 107 28 64]);            
-                reflectanceFactors(i,2+j) = 0.6 / mean(imgMS(:));
+                reflectanceFactors(i,2+j) = panelReflectance / mean(imgMS(:));
             end
         end
     end

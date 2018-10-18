@@ -4,11 +4,11 @@
 close all
 
 %% Parameters
-dataPath = fullfile('data','indicatorsPaper.mat');  % Path and name of indicator file to load.
+dataPath = fullfile('results','indicatorsAllMeans.mat');  % Path and name of indicator file to load.
 displayIndicatorNames = true;   % Display which indicators are available in the laoded data.
 preprocessing = '';                 % '' for none, 'S' or 'N' for standardscaler/normalization
-presetID = 10;                   % which Presets to show (supports multiple).
-indicatorID = 1;            % which indicators to show (supports multiple).
+presetID = 3;                   % which Presets to show (supports multiple).
+indicatorID = 3;            % which indicators to show (supports multiple).
 average = true;                 % True: plot mean + stdev, false: plot boxes.
 displayPreset = true;           % Keep set to true, false to play around with plotindicator function.
 daysAfterSowing = [ 0	12	14	18	21	25	28	32	36	39	43	46	49	53	56	70];
@@ -97,7 +97,7 @@ end
 %                   Water/N/Weeds. Default = 0.
 
 if(~displayPreset)
-    for indicatorID = [1 2 3 16]
+    for indicatorID = [13 16]
         indices = [1:3 10:12 13:15 22:24]; %1:30;
         data = X(indices,:,indicatorID);
         truth = Y(indices,:);
