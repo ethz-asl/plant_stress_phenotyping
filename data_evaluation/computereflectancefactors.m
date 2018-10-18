@@ -17,7 +17,7 @@ function [reflectanceFactors] = computereflectancefactors(imageSetRGB, imageSetI
 
 reflectanceFactors = zeros(31,27);
 occlusions = false(31,1);
-panelReflectance = 0.6
+panelReflectance = 0.6;
 
 % Compute RGB and occlusion
 for i=1:31
