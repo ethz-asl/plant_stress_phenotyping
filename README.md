@@ -20,6 +20,20 @@ If you find this repository useful in your scientific work, please consider citi
 >A Spatio Temporal Spectral Dataset for Plant Stress Phenotyping by Khanna, Raghav and Schmidt, Lukas and Nieto, Juan and Siegwart, Roland and Liebisch, Frank  
 >A Bayesian Framework for Plant Stress Phenotyping by Raghav Khanna, Lukas Schmid, Juan Nieto and Frank Liebisch
 
+### Code Index
+
+#### Data Evaluation
+Process raw images and create spatio-spectral point clouds for each box and at each timestep.
+
+| Filename | Type | Description |
+|---|---|---|
+|`getimagesfromfolder.m`|*function*|Retrieves 31 images of given image type from the specified measurement date folder.|
+|`cropboxfromimage.m`|*function*|Crops out a rectangular region from an image, corresponding to the plant box given its parameters|
+|`computereflectancefactors.m`|*function*|Estimate the reflectance normalization factor for each measurement in a full measurement set of 31 boxes for a given timestep, using the standard reflectance panel attached to the camera setup.|
+|`MeasurementPointCloud.m`|*class*|Spatio-spectral point cloud data structure. Class member functions may be used to construct point cloud objects, analyse and visualize its properties.|
+|`script_detect_box_rgb.m`|*script*|Semi automated workflow to detect box extents from rgb images. The output box parameters may be used as input for `cropboxfromimage.m`. Our baseline box detections are available for the entire dataset (16 dates x 31 boxes in the `boxDetections.mat` file which can be found in the `results` folder.)|
+|`script_create_measurementpointcloud.m`|*script*|Demo script to fully build and populate **MeasurementPointCloud** objects from raw images.|
+
 ### Example (run *demo.m*)
 For Realsense ZR300 stereo reconstruction and color reprojection
 ```
