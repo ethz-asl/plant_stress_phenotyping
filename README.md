@@ -28,6 +28,10 @@ Some functionality depends on the following third party software
 ### Usage
 - Scripts are configured to be run from the root `plant_stress_phenotyping` folder by default.
 
+### Data Index
+| Filename | Link | Description |  
+|----|----|----| 
+|`CMV2K-SSM5x5-600_875-5.5.9.2.xml`|[](spectral_image/CMV2K-SSM5x5-600_875-5.5.9.2.xml)| Spectral response data for the Ximea camera, lens and filter setup used for the dataset|
 ### Code Index
 #### Camera Calibration, 3D reconstruction and Multispectral Reprojection
 Folder `3dprocessing` contains utility functions for intrinsic and extrinsic camera calibration, stereo reconstruction and reprojection used for creating the spatio-spectral point clouds.
