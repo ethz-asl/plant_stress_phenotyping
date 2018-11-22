@@ -8,6 +8,7 @@ classdef IndicatorData < handle
         IndicatorNames  % N_Indicators cell: Name and unit of Nth indicator.
         LabelNames      % N_Causes cell: Name of all causes
         LabelLevels     % N_causes x max_N_Realizations: Names of all cause realizations.
+        daysAfterSowing = [ 0	12	14	18	21	25	28	32	36	39	43	46	49	53	56	70]; % N_datasets representing number of measurement dates
     end
     
     methods
@@ -52,12 +53,13 @@ classdef IndicatorData < handle
             
             % Preprocessing
             data = obj.Data;
-            if any(strcmpi('N', preprocessing))     % Normalizer
+            if contains(preprocessing, 'N')     % Normalizer
                 for i =1:size(data, 3)
                     data(:,:,i) = data(:,:,i)./ ...
                         repmat(mean(data(1:3,:,i)), 30, 1);
                 end
-            elseif any(strcmpi('S', preprocessing)) % Standard Scaler
+            end
+            if contains(preprocessing, 'S') % Standard Scaler
                 for i =1:size(data, 3)
                     data(:,:,i) = data(:,:,i) - ...
                         repmat(mean(data(:,:,i)), 30, 1);
@@ -65,8 +67,9 @@ classdef IndicatorData < handle
                         (repmat(var(data(:,:,i)), 30, 1).^0.5);
                 end
             end
-            if any(strcmpi('T', preprocessing))     % Add time index
-                data = cat(3, data, repmat(1:16, 30, 1));
+            if contains(preprocessing, 'T')     % Add time index TODO: Change time index to days after sowing/ degree days
+                data = cat(3, data, repmat(obj.daysAfterSowing, 30, 1));
+                obj.IndicatorNames{end+1} = 'DaysAfterSowing';
             end            
         end
         function [data, groups] = getdatastring(obj, preprocessing)
