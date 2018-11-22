@@ -107,5 +107,8 @@ ENV/
 results/pointclouds
 results/images.mat
 
+# Unreleased but potentially useful code
+classification/
+results/plots/
 # Third party code
 thirdparty/
