@@ -110,5 +110,7 @@ results/images.mat
 # Unreleased but potentially useful code
 classification/
 results/plots/
+TODOs.md
+
 # Third party code
 thirdparty/

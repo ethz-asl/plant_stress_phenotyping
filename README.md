@@ -68,5 +68,20 @@ Folder `indicator_analysis` contains routines to extract, visualize, analyse and
 |`script_anova.m`|*script*|Perform Analysis of Variance (ANOVA) and multiple comparison tests to detect phenotypic indicators of significance w.r.t e.g yield. ![Significance of Canopy Cover on Drought stress](results/anova-canopycover-water.jpg)|
 
 #### Models
+Folder `models` contains routines for learning plant growth models (as development of indicators over time) from **IndicatorData** and using these models to infer stress factor probabilities given a novel set of the indicators.
 
+| Filename | Type | Description |
+|---|---|---|
+|`script_supervised_learning.m`|*script*|Can be used to train a variety of supported classifiers for plant stress severity level prediction.|
 
+##### Supported Models
+| |
+|---|
+| DecisionTree |
+| LDA |
+| SVM |
+| KNN |
+| BaggedTrees |
+| SubspaceDiscriminant |
+|SubspaceKNN |
+| RUSBoostedTrees|
