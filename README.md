@@ -75,8 +75,7 @@ Folder `models` contains routines for learning plant growth models (as developme
 |`script_supervised_learning.m`|*script*|Can be used to train a variety of supported classifiers for plant stress severity level prediction.|
 |`ClassifierMethods.m`|*class*| Defines the different supported classifier types|
 |`getClassifierModel.m`|*function*| Returns the requested type of classifier model from MATLAB's Statistics and Machine Learning toolbox given its `ClassifierMethods` type.|
-|`perCauseAccuracy.m`|*function*|Returns the % accuracy of the given predictions and
-ground truth for each stress factor, ignores observation rows with Nan values|
+|`perCauseAccuracy.m`|*function*|Returns the % accuracy of the given predictions and ground truth for each stress factor, ignores observation rows with Nan values|
 
 ##### Supported Models
 | |
