@@ -6,21 +6,22 @@
 resultsName = 'point_cloud_';    % Stored variables are expected as 
                             % "resultsName<dataset no>.mat".
 resultsPath = fullfile('results', 'pointclouds');    % Where to find stored data.
-indEval = {'CanCov', 'VolEst', 'Height', 'MS1', 'MS2', 'MS3', 'MS4', 'MS5', 'MS6', 'MS7', 'MS8', 'MS9', 'MS10', 'MS11', 'MS12', 'MS13', 'MS14', 'MS15', 'MS16', 'MS17', 'MS18', 'MS19', 'MS20','MS21', 'MS22', 'MS23', 'MS24', 'MS25'};  % Which indicators to extract,
+indEval = {'Time', 'CanCov', 'VolEst', 'Height', 'MS1', 'MS2', 'MS3', 'MS4', 'MS5', 'MS6', 'MS7', 'MS8', 'MS9', 'MS10', 'MS11', 'MS12', 'MS13', 'MS14', 'MS15', 'MS16', 'MS17', 'MS18', 'MS19', 'MS20','MS21', 'MS22', 'MS23', 'MS24', 'MS25', 'Height', 'MS1', 'MS2', 'MS3', 'MS4', 'MS5', 'MS6', 'MS7', 'MS8', 'MS9', 'MS10', 'MS11', 'MS12', 'MS13', 'MS14', 'MS15', 'MS16', 'MS17', 'MS18', 'MS19', 'MS20','MS21', 'MS22', 'MS23', 'MS24', 'MS25'};  % Which indicators to extract,
             % Supported are Height, NDVI, MS* with *=1:25 being the 
             % multispectral band, EGI (=Excess green index), NEGI
             % (=normalized EGI), CanCov (=canopy cover), VolEst (=volumetric 
             % estimate), NDRI (normalized difference index), ERI (Excess red
             % index).
-indStat = {'m', 'm', 'm', 'm', 'm', 'm', 'm', 'm', 'm', 'm', 'm', 'm', 'm', 'm', 'm', 'm', 'm', 'm', 'm', 'm', 'm', 'm', 'm', 'm', 'm', 'm', 'm', 'm'};   % Which statistic to evaluate over the pointcloud (Mean, Var, Min, Max)
+indStat = {'m', 'm', 'm', 'm', 'm', 'm', 'm', 'm', 'm', 'm', 'm', 'm', 'm', 'm', 'm', 'm', 'm', 'm', 'm', 'm', 'm', 'm', 'm', 'm', 'm', 'm', 'm', 'm',  'v', 'v', 'v', 'v', 'v', 'v', 'v', 'v', 'v', 'v', 'v', 'v', 'v', 'v', 'v', 'v', 'v', 'v','v', 'v', 'v', 'v', 'v', 'v', 'v', 'v'};   % Which statistic to evaluate over the pointcloud (Mean, Var, Min, Max)
 %indStat = {'v', 'v', 'v', 'v', 'v', 'v', 'v', 'v', 'v', 'v', 'v', 'v', 'v', 'v', 'v', 'v', 'v', 'v', 'v', 'v','v', 'v', 'v', 'v', 'v', 'v', 'v', 'v'};   % Which statistic to evaluate over the pointcloud (Mean, Var, Min, Max)
 
 assert(all(size(indEval)==size(indStat)), 'Arrays defining indicators and their statistics should be of the same size');
 indNames = {'Canopy Cover [%]', 'Volumetric Estimate [m*pixels]', ...
-    ' Height [m]', 'MS1', 'MS2', 'MS3', 'MS4', 'MS5', 'MS6', 'MS7', 'MS8', 'MS9', 'MS10', 'MS11', 'MS12', 'MS13', 'MS14', 'MS15', 'MS16', 'MS17', 'MS18', 'MS19', 'MS20','MS21', 'MS22', 'MS23', 'MS24', 'MS25'};      % Indicator names [with unit]
+    ' Height [m]', 'MS1', 'MS2', 'MS3', 'MS4', 'MS5', 'MS6', 'MS7', 'MS8', 'MS9', 'MS10', 'MS11', 'MS12', 'MS13', 'MS14', 'MS15', 'MS16', 'MS17', 'MS18', 'MS19', 'MS20','MS21', 'MS22', 'MS23', 'MS24', 'MS25', ' Height Var [m]', 'MS1 Var', 'MS2 Var', 'MS3 Var', 'MS4 Var', 'MS5 Var', 'MS6 Var', 'MS7 Var', 'MS8 Var', 'MS9 Var', 'MS10 Var', 'MS11 Var', 'MS12 Var', 'MS13 Var', 'MS14 Var', 'MS15 Var', 'MS16 Var', 'MS17 Var', 'MS18 Var', 'MS19 Var', 'MS20 Var','MS21 Var', 'MS22 Var', 'MS23 Var', 'MS24 Var', 'MS25 Var' };      % Indicator names [with unit]
 assert(all(size(indEval)==size(indNames)), 'Arrays defining indicators and their names should be of the same size');
-saveFile = false;                                       % Set true to save the generated indicator data.
-saveName = fullfile('results','indicatorsAllMeans.mat');            % save directory, including filename.mat
+saveFile = true;                                       % Set true to save the generated indicator data.
+saveName = fullfile('results','indicatorsAllMeansAndVariances.mat');            % save directory, including filename.mat
+daysAfterSowing = [ 0	12	14	18	21	25	28	32	36	39	43	46	49	53	56	70];
 
 %% Code
 % Load data
@@ -51,7 +52,7 @@ for k = 1:length(indEval)   % indicators
 end
 
 % Build IndicatorData and save
-indicatorData = IndicatorData(dataMat, indNames);
+indicatorData = IndicatorData(dataMat, indNames, timeline);
 if saveFile
     fprintf(1, 'Saving-');
     save(saveName, 'indicatorData');
