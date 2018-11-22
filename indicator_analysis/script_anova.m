@@ -1,8 +1,10 @@
 %% Script ANOVA
 % Perform analysis of variance (ANOVA) for different indicators or yields.
 % Identify significant differences by using multiple comparison analysis.
+% To be run from plant_stress_phenotyping root folder
+
 %% Parameters
-dataPath = fullfile('results','indicatorsAllMeans.mat'); % Path and name of IndicatorData to load.
+dataPath = fullfile('results','indicatorsAllVariances.mat'); % Path and name of IndicatorData to load.
 processYield = false;    % Evaluate yield instead of indicators. Yield IDs 
                         % are 1-Leaves, 2-Dry Leaves, 3-Beets, 4-Dry Beets.
 ID = 1;                 % ID of indicator/yield data to evaluate.
@@ -24,8 +26,8 @@ rankingMethod = 1;          % 1- Ranking on all indicators, 2- Only on
 % Load data
 loadData = load(dataPath);
 loadData = struct2cell(loadData);
-indicator = loadData{1};
-[data, groups] = indicator.getdatastring(preprocessing);
+indicatorVar = loadData{1};
+[data, groups] = indicatorVar.getdatastring(preprocessing);
 
 % Single Anova
 if ~rankAllIndicators
@@ -62,7 +64,7 @@ if ~rankAllIndicators
         if processYield 
             title([yield_names{ID} ': ' titles{i}]);
         else
-            title([indicator.IndicatorNames{ID} ': ' titles{i}]);
+            title([indicatorVar.IndicatorNames{ID} ': ' titles{i}]);
         end
     end
 else
@@ -119,21 +121,21 @@ else
     [Res, rankingWater] =sort(rankingResults(:,1), 1, 'descend');
     bar(Res, 'FaceColor', [0.2 0.6 .8]);
     set(gca,'Xtick',1:N)
-    xticklabels(indicator.IndicatorNames(rankingWater));
+    xticklabels(indicatorVar.IndicatorNames(rankingWater));
     title('Indicator ranking for water');
     
     subplot(3,1,2);
     [Res, rankingNitrogen] =sort(rankingResults(:,2), 1, 'descend');
     bar(Res, 'FaceColor', [0 0.7 0.4]);
     set(gca,'Xtick',1:N)
-    xticklabels(indicator.IndicatorNames(rankingNitrogen));
+    xticklabels(indicatorVar.IndicatorNames(rankingNitrogen));
     title('Indicator ranking for nitrogen');
     
     subplot(3,1,3);
     [Res, rankingWeeds] =sort(rankingResults(:,3), 1, 'descend');
     bar(Res, 'FaceColor', [1 0.5 0]);
     set(gca,'Xtick',1:N)
-    xticklabels(indicator.IndicatorNames(rankingWeeds));
+    xticklabels(indicatorVar.IndicatorNames(rankingWeeds));
     title('Indicator ranking for weeds');
     
 end
