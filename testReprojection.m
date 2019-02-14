@@ -1,0 +1,11 @@
+close all;
+clc;
+imagesDir = '/home/flourish/scratch/matlab_data/subsampled';
+imageName = 'frame000000.png';
+cam1 = 'cam0';
+cam2 = 'cam2';
+img1 = imread(fullfile(imagesDir, cam1, imageName));
+img2 = imread(fullfile(imagesDir, cam2, imageName));
+checkerboardSizeMM = 48;
+stereoParams = calibParams{1};
+visualizeReprojection(stereoParams, img1, img2, checkerboardSizeMM);
