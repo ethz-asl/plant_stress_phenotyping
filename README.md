@@ -37,7 +37,7 @@ Folder `3dprocessing` contains utility functions for intrinsic and extrinsic cam
 | Filename | Type | Description |  
 |----|----|----|  
 |`calibratecameraarray.m`|*function*|Calibrate a set of N cameras given synchronised images of a checkerboard in different positions. Accepts RGB or grayscale images which may be taken from cameras sensitive to different wavelength bands as long as the checkerboard corners are visible in the images. Sample Usage for calibrating 3 cameras imaging a checkerboard with a square size of 50mm: `calibParams = calibratecameraarray(3, 50);`|
-|`visualizeRprojection.m`|*function*|Uses estimated camera array calibration parameters to reproject a checkerboard pattern into a (synchronous)image of the scenetaken from another camera. ![checkerboard-reprojection](results/checkerboard-reprojection.jpeg)|
+|`visualizeRprojection.m`|*function*|Uses estimated camera array calibration parameters to reproject a checkerboard pattern into a (synchronous)image of the scenetaken from another camera. ![checkerboard-reprojection](results/checkerboard-reprojection.jpg)|
 |`calibrateExtrinsicsCaltag.m`|*function*|Uses camera intrinsic parameters and (synchronous)images of a static scene containing a caltag marker from two cameras to estimate their extrinsic transform.|
 |`stereoreconstruction.m`|*function*|Takes a set of pair of synchronised images and calibration parameters from a stereo camera pair and returns a point cloud array (and depth image) of the 3D scene. ![point cloud](results/ir-cloud.png)|
 |`colorpointcloud.m`|*function*|Takes pointclouds and (color) images along with camera calibration parameters to return a coloured point cloud of the scene. ![coloured point cloud](results/rgb-cloud.png)|
